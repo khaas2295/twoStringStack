@@ -1,0 +1,65 @@
+ static String morganAndString(String a, String b) {
+        String finalForm = "";
+        
+        char[] aCh = a.toCharArray();
+        char[] bCh = b.toCharArray();
+        
+        int aInd = 0;
+        int bInd = 0;
+        
+        int eqCount = 0;
+        
+        while(aInd<aCh.length && bInd<bCh.length){
+            if(aCh[aInd] < bCh[bInd]){
+                finalForm += aCh[aInd];
+                aInd++;
+            }else if(aCh[aInd] > bCh[bInd]){
+                finalForm += bCh[bInd];
+                bInd++;
+            }else{
+                int tempa = aInd;
+                int tempb = bInd;
+
+                while(aCh[tempa] == bCh[tempb]){
+   
+                    if(tempa ==a.length()-1 && tempb ==b.length()-1){
+
+                            tempa = aInd;
+                            tempb = tempb;
+                            break;
+
+                    }else if(tempa ==a.length()-1){
+
+                            tempa = aInd;
+                            tempb = bInd;
+                            break;
+                    }else if(tempb ==b.length()-1){
+                            tempb = bInd;
+                            tempa = tempa+1;
+                            break;
+                    }
+                        tempa++;
+                    tempb++;
+                }
+                if(aCh[tempa] <= bCh[tempb]){
+                    finalForm += aCh[aInd];
+                    aInd++;
+                }else{
+                    finalForm += bCh[bInd];
+                    bInd++;
+                }
+            }
+        }
+        if(bInd<bCh.length){
+                String teststr = new String(bCh,bInd,bCh.length-bInd);
+                finalForm += teststr;
+        }else{    
+                String teststr = new String(aCh,aInd,aCh.length-aInd);
+                finalForm += teststr;
+        }
+        return finalForm;  
+    }
+
+
+
+
